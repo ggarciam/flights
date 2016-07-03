@@ -1,0 +1,48 @@
+<div layout="vertical" layout-fill>
+
+  <md-content>
+    <header>
+      <acme-navbar></acme-navbar>
+    </header>
+
+    <section class="menu">
+      <h1>Selecciona tu viaje</h1>
+      <form>
+          <md-input-container>
+              <label>From</label>
+              <md-select ng-model="main.origin">
+                  <md-option ng-repeat="airport in main.airports | orderBy: 'code' track by airport.id" ng-value="airport">
+                      {{airport.code}}
+                  </md-option>
+              </md-select>
+          </md-input-container>
+          <md-input-container>
+              <label>To</label>
+              <md-select ng-model="main.destination">
+                  <md-option ng-repeat="airport in main.airports | orderBy: 'code' track by airport.id " ng-value="airport">
+                      {{airport.code}}
+                  </md-option>
+              </md-select>
+          </md-input-container>
+          <md-datepicker ng-model="main.departure_date" md-placeholder="Enter date" md-date-filter="main.onlyWeekendsPredicate"></md-datepicker>
+          <md-input-container>
+              <label>Passengers</label>
+              <md-select ng-model="main.passengersNumber">
+                  <md-option ng-repeat="number in main.passengers" ng-value="number">
+                      {{number}}
+                  </md-option>
+              </md-select>
+          </md-input-container>
+      </form>
+
+      <md-button ng-click="main.go()">Go Flights</md-button>
+    </section>
+    <section class="main-content">
+        <div class="totals">
+            <span ng-bind="total.flights"></span>
+        </div>
+
+    </section>
+  </md-content>
+
+</div>
